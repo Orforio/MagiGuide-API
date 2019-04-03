@@ -2,9 +2,6 @@ dist: trusty
 
 sudo: required
 
-addons:
-  chrome: stable
-
 language: node_js
 
 before_install:
@@ -20,10 +17,10 @@ before_script:
   - ./cc-test-reporter before-build
 
 script:
-  - ng lint
-  - ng test:cov
-  - ng test:e2e
-  - ng build
+  - npm run lint
+  - npm run test:cov
+  - npm run test:e2e
+  - npm run build
 
 after_script:
   - greenkeeper-lockfile-upload
