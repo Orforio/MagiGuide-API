@@ -2,6 +2,7 @@ import { Test, TestingModule } from '@nestjs/testing';
 
 import { ParksController } from './parks.controller';
 import { ParksService } from './parks.service';
+import { Attraction } from './attraction.model';
 import { AttractionWaitTime } from './attraction-wait-time.model';
 import { AttractionStatus } from './attraction-status.enum';
 import { Parks } from './parks.enum';
@@ -23,6 +24,31 @@ describe('Parks Controller', () => {
 	it('should be defined', () => {
 		// Assert
 		expect(controller).toBeDefined();
+	});
+
+	describe('getAttractions()', () => {
+		it('should return an array of Attractions', () => {
+			// Arrange
+			const mockData: Attraction[] = [
+				{
+					id: 'TEST01',
+					name: 'Test Attraction 01',
+					fastpassEnabled: true,
+					schedule: {
+						openingTime: new Date('1992-04-12T09:00:00Z'),
+						closingTime: new Date('1992-04-12T19:00:00Z')
+					}
+				}
+			];
+			jest.spyOn(service, 'getAttractions').mockResolvedValue(Promise.resolve(mockData));
+
+			// Act
+			const result = controller.getAttractions(Parks.DisneylandParisWaltDisneyStudios);
+
+			// Assert
+			expect.assertions(1);
+			return expect(result).resolves.toEqual(mockData);
+		});
 	});
 
 	describe('getWaitTimes()', () => {

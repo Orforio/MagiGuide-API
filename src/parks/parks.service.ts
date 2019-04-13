@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { Parks as Themeparks } from 'themeparks';
 
+import { Attraction } from './attraction.model';
 import { AttractionWaitTime } from './attraction-wait-time.model';
 import { AttractionStatus } from './attraction-status.enum';
 import { Parks } from './parks.enum';
@@ -19,10 +20,27 @@ export class ParksService {
 		[Status.Refurbishment]: AttractionStatus.Refurbishment
 	};
 
+	public async getAttractions(park: Parks): Promise<Attraction[]> {
+		return this.parks[park].GetWaitTimes()
+			.then((attractions: ThemeparksWaitTimes[]) => {
+				return attractions.map(attraction => {
+					return {
+						fastpassEnabled: attraction.fastPass,
+						id: attraction.id,
+						name: attraction.name,
+						schedule: {
+							closingTime: attraction.schedule.closingTime,
+							openingTime: attraction.schedule.openingTime
+						}
+					} as Attraction;
+				});
+			});
+	}
+
 	public async getWaitTimes(park: Parks): Promise<AttractionWaitTime[]> {
 		return this.parks[park].GetWaitTimes()
 			.then((attractions: ThemeparksWaitTimes[]) => {
-				return attractions.map((attraction) => {
+				return attractions.map(attraction => {
 					return {
 						active: attraction.active,
 						id: attraction.id,

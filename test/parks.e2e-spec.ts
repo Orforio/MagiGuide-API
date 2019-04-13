@@ -7,7 +7,10 @@ import { ParksService } from './../src/parks/parks.service';
 
 describe('ParksController', () => {
 	let app: INestApplication;
-	const mockParksService = { getWaitTimes: () => [{}] };
+	const mockParksService = {
+		getAttractions: () => [{}],
+		getWaitTimes: () => [{}]
+	};
 
 	beforeEach(async () => {
 		const moduleFixture: TestingModule = await Test.createTestingModule({
@@ -23,6 +26,15 @@ describe('ParksController', () => {
 
 	afterAll(async () => {
 		await app.close;
+	});
+
+	describe('/parks/:park/attractions (GET)', () => {
+		it('return Attractions data from the Themeparks API', () => {
+			return request(app.getHttpServer())
+				.get('/parks/dlp-wds/attractions')
+				.expect(200)
+				.expect(mockParksService.getAttractions());
+		});
 	});
 
 	describe('/parks/:park/waittimes (GET)', () => {

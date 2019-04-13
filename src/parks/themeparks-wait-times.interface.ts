@@ -17,8 +17,8 @@ export interface FastpassReturnTime {
 }
 
 export interface Schedule {
-	closingTime: string;
-	openingTime: string;
+	closingTime: Date;
+	openingTime: Date;
 	special?: Schedule[];
 	type: Status;
 }
