@@ -31,8 +31,9 @@ export class ParksService {
 						schedule: {
 							closingTime: attraction.schedule.closingTime,
 							openingTime: attraction.schedule.openingTime
-						}
-					} as Attraction;
+						},
+						updated: attraction.lastUpdate
+					};
 				});
 			});
 	}

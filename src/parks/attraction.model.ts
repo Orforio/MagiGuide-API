@@ -5,4 +5,5 @@ export class Attraction {
 	public id: string;
 	public name: string;
 	public schedule: AttractionSchedule;
+	public updated: Date;
 }
