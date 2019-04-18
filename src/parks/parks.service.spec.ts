@@ -78,7 +78,8 @@ describe('ParksService', () => {
 					schedule: {
 						openingTime: new Date('1992-04-12T09:00:00Z'),
 						closingTime: new Date('1992-04-12T19:00:00Z')
-					}
+					},
+					updated: new Date('1992-04-12T10:15:00Z')
 				},
 				{
 					id: 'TEST02',
@@ -87,7 +88,8 @@ describe('ParksService', () => {
 					schedule: {
 						openingTime: new Date('1992-04-12T09:00:00Z'),
 						closingTime: new Date('1992-04-12T19:00:00Z')
-					}
+					},
+					updated: new Date('1992-04-12T10:15:00Z')
 				}
 			];
 			service.parks['dlp-wds'].GetWaitTimes.mockResolvedValue(mockData);

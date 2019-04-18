@@ -37,7 +37,8 @@ describe('Parks Controller', () => {
 					schedule: {
 						openingTime: new Date('1992-04-12T09:00:00Z'),
 						closingTime: new Date('1992-04-12T19:00:00Z')
-					}
+					},
+					updated: new Date('1992-04-12T10:30:00Z')
 				}
 			];
 			jest.spyOn(service, 'getAttractions').mockResolvedValue(Promise.resolve(mockData));
