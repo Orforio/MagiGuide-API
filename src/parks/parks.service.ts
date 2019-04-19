@@ -24,14 +24,16 @@ export class ParksService {
 		return this.parks[park].GetWaitTimes()
 			.then((attractions: ThemeparksWaitTimes[]) => {
 				return attractions.map(attraction => {
+					const schedule = attraction.schedule ? {
+						closingTime: attraction.schedule.closingTime,
+						openingTime: attraction.schedule.openingTime
+					} : null;
+
 					return {
 						fastpassEnabled: attraction.fastPass,
 						id: attraction.id,
 						name: attraction.name,
-						schedule: {
-							closingTime: attraction.schedule.closingTime,
-							openingTime: attraction.schedule.openingTime
-						},
+						schedule,
 						updated: attraction.lastUpdate
 					};
 				});
