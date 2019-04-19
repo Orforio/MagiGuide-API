@@ -101,6 +101,54 @@ describe('ParksService', () => {
 			expect.assertions(1);
 			return expect(result).resolves.toEqual(expectedResult);
 		});
+
+		it('should should handle missing Schedules', () => {
+			// Arrange
+			const mockData: ThemeparksWaitTimes[] = [
+				{
+					id: 'TEST01',
+					name: 'Test Attraction 01',
+					waitTime: 30,
+					active: true,
+					fastPass: true,
+					status: Status.Operating,
+					lastUpdate: new Date('1992-04-12T10:15:00Z')
+				},
+				{
+					id: 'TEST02',
+					name: 'Test Attraction 02',
+					waitTime: 15,
+					active: false,
+					fastPass: false,
+					status: Status.Closed,
+					lastUpdate: new Date('1992-04-12T10:15:00Z')
+				}
+			];
+			const expectedResult: Attraction[] = [
+				{
+					id: 'TEST01',
+					name: 'Test Attraction 01',
+					fastpassEnabled: true,
+					schedule: null,
+					updated: new Date('1992-04-12T10:15:00Z')
+				},
+				{
+					id: 'TEST02',
+					name: 'Test Attraction 02',
+					fastpassEnabled: false,
+					schedule: null,
+					updated: new Date('1992-04-12T10:15:00Z')
+				}
+			];
+			service.parks['dlp-wds'].GetWaitTimes.mockResolvedValue(mockData);
+
+			// Act
+			const result = service.getAttractions(Parks.DisneylandParisWaltDisneyStudios);
+
+			// Assert
+			expect.assertions(1);
+			return expect(result).resolves.toEqual(expectedResult);
+		});
 	});
 
 	describe('getWaitTimes()', () => {
