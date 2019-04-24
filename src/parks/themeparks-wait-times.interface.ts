@@ -3,7 +3,7 @@ export interface ThemeparksWaitTimes {
 	fastPass: boolean;
 	fastPassReturnTime?: FastpassReturnTime;
 	id: string | number;
-	lastUpdate: Date;
+	lastUpdate: number;
 	name: string;
 	schedule?: Schedule;
 	status: Status;
