@@ -1,4 +1,5 @@
 import { Injectable } from '@nestjs/common';
+import * as moment from 'moment';
 import { Parks as Themeparks } from 'themeparks';
 
 import { Attraction } from './attraction.model';
@@ -34,8 +35,8 @@ export class ParksService {
 						id: attraction.id,
 						name: attraction.name,
 						schedule,
-						updated: attraction.lastUpdate
-					};
+						updated: moment(attraction.lastUpdate).toDate()
+					} as Attraction;
 				});
 			});
 	}
@@ -48,7 +49,7 @@ export class ParksService {
 						active: attraction.active,
 						id: attraction.id,
 						status: this.statusToAttractionStatus[attraction.status],
-						updated: attraction.lastUpdate,
+						updated: moment(attraction.lastUpdate).toDate(),
 						waitTime: attraction.waitTime
 					} as AttractionWaitTime;
 				});

@@ -48,7 +48,7 @@ describe('ParksService', () => {
 					active: true,
 					fastPass: true,
 					status: Status.Operating,
-					lastUpdate: new Date('1992-04-12T10:15:00Z'),
+					lastUpdate: new Date('1992-04-12T10:15:00Z').getTime(),
 					schedule: {
 						openingTime: new Date('1992-04-12T09:00:00Z'),
 						closingTime: new Date('1992-04-12T19:00:00Z'),
@@ -62,7 +62,7 @@ describe('ParksService', () => {
 					active: false,
 					fastPass: false,
 					status: Status.Closed,
-					lastUpdate: new Date('1992-04-12T10:15:00Z'),
+					lastUpdate: new Date('1992-04-12T10:15:00Z').getTime(),
 					schedule: {
 						openingTime: new Date('1992-04-12T09:00:00Z'),
 						closingTime: new Date('1992-04-12T19:00:00Z'),
@@ -112,7 +112,7 @@ describe('ParksService', () => {
 					active: true,
 					fastPass: true,
 					status: Status.Operating,
-					lastUpdate: new Date('1992-04-12T10:15:00Z')
+					lastUpdate: new Date('1992-04-12T10:15:00Z').getTime()
 				},
 				{
 					id: 'TEST02',
@@ -121,7 +121,7 @@ describe('ParksService', () => {
 					active: false,
 					fastPass: false,
 					status: Status.Closed,
-					lastUpdate: new Date('1992-04-12T10:15:00Z')
+					lastUpdate: new Date('1992-04-12T10:15:00Z').getTime()
 				}
 			];
 			const expectedResult: Attraction[] = [
@@ -172,7 +172,7 @@ describe('ParksService', () => {
 					active: true,
 					fastPass: true,
 					status: Status.Operating,
-					lastUpdate: new Date('1992-04-12T10:15:00Z')
+					lastUpdate: new Date('1992-04-12T10:15:00Z').getTime()
 				},
 				{
 					id: 'TEST02',
@@ -181,7 +181,7 @@ describe('ParksService', () => {
 					active: false,
 					fastPass: false,
 					status: Status.Closed,
-					lastUpdate: new Date('1992-04-12T10:15:00Z')
+					lastUpdate: new Date('1992-04-12T10:15:00Z').getTime()
 				}
 			];
 			const expectedResult: AttractionWaitTime[] = [
